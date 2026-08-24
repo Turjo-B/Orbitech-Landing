@@ -1,0 +1,5 @@
+# 🔴 PLACEHOLDER — replace the domain below before launch
+User-agent: *
+Allow: /
+
+Sitemap: https://orbitech.example/sitemap.xml

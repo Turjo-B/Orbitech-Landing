@@ -1,0 +1,13 @@
+{
+  "name": "orbitech-landing",
+  "version": "1.0.0",
+  "private": true,
+  "description": "Orbitech landing site — static, no build step. Playwright is dev-only, for verify.js.",
+  "scripts": {
+    "serve": "python3 -m http.server 8000",
+    "verify": "node verify.js"
+  },
+  "devDependencies": {
+    "playwright": "^1.62.1"
+  }
+}

@@ -1,0 +1,751 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="color-scheme" content="dark">
+<meta name="theme-color" content="#04060d">
+
+<!-- ==========================================================================
+     SEO / SOCIAL  🔴 PLACEHOLDER
+     Replace the canonical URL, og:image and any copy marked below.
+     ========================================================================== -->
+<title>Orbitech — Multilingual data solutions & software engineering</title>
+<meta name="description" content="Orbitech builds the data and the product. Data annotation, transcription, translation and MTPE across 100+ languages, plus in-house software and AI engineering — from one accountable team.">
+<link rel="canonical" href="https://orbitech.example/">
+<meta name="robots" content="index, follow, max-image-preview:large">
+
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="Orbitech">
+<meta property="og:title" content="Orbitech — Multilingual data solutions & software engineering">
+<meta property="og:description" content="Data annotation, transcription, translation and MTPE across 100+ languages, plus in-house software and AI engineering — from one accountable team.">
+<meta property="og:url" content="https://orbitech.example/">
+<meta property="og:image" content="https://orbitech.example/assets/img/og-cover.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:image:alt" content="Orbitech — explore the orbit with us">
+
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Orbitech — Multilingual data solutions & software engineering">
+<meta name="twitter:description" content="Data annotation, transcription, translation and MTPE across 100+ languages, plus in-house software and AI engineering.">
+<meta name="twitter:image" content="https://orbitech.example/assets/img/og-cover.png">
+
+<!-- Inline SVG favicon: no extra request, scales perfectly -->
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Crect width='24' height='24' rx='5' fill='%2304060d'/%3E%3Cg fill='none' stroke='%234fd8e8' stroke-width='1.6'%3E%3Ccircle cx='12' cy='12' r='3.6'/%3E%3Cellipse cx='12' cy='12' rx='9' ry='4.2' transform='rotate(-28 12 12)'/%3E%3C/g%3E%3Ccircle cx='19.2' cy='8.6' r='1.5' fill='%238b7cff'/%3E%3C/svg%3E">
+<link rel="apple-touch-icon" href="assets/img/apple-touch-icon.png">
+
+<!-- Fonts: preconnected and swap-loaded so text paints immediately -->
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Space+Grotesk:wght@500;600;700&display=swap">
+
+<link rel="stylesheet" href="assets/css/orbitech.css">
+
+<script>
+  /* Flag JS availability before first paint so scroll-reveal never hides
+     content from users without JavaScript. */
+  document.documentElement.classList.add('js-enabled');
+</script>
+
+<!-- ==========================================================================
+     STRUCTURED DATA  🔴 PLACEHOLDER — update URL, contact details, socials
+     ========================================================================== -->
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "ProfessionalService",
+  "name": "Orbitech",
+  "url": "https://orbitech.example/",
+  "description": "Multilingual data solutions — annotation, transcription, translation and MTPE across 100+ languages — and in-house software and AI engineering.",
+  "areaServed": "Worldwide",
+  "email": "hello@orbitech.example",
+  "sameAs": [],
+  "makesOffer": [
+    { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "Data annotation" } },
+    { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "Transcription" } },
+    { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "Translation and localisation" } },
+    { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "Machine translation post-editing" } },
+    { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "Custom software development" } },
+    { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "AI and ML engineering" } }
+  ]
+}
+</script>
+</head>
+
+<body>
+
+<a class="skip-link" href="#main">Skip to main content</a>
+
+<!-- ==========================================================================
+     CINEMATIC OPENING SEQUENCE
+     Ships `hidden`. The bootstrap script directly below unhides it only when
+     every condition passes (motion allowed, capable device, first visit this
+     session). Without JavaScript it never appears at all, and visitors land
+     straight on the hero.
+     ========================================================================== -->
+<div class="intro" id="intro" role="dialog" aria-label="Introduction animation" hidden>
+  <canvas class="intro__canvas" id="intro-canvas" aria-hidden="true"></canvas>
+  <div class="intro__vignette" aria-hidden="true"></div>
+  <p class="intro__caption" id="intro-caption" aria-hidden="true"></p>
+  <button type="button" class="intro__skip" id="intro-skip">
+    Skip intro
+    <svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor"
+         stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+      <path d="M5 4l8 8-8 8M15 4l4 8-4 8"/>
+    </svg>
+  </button>
+  <div class="intro__progress" id="intro-progress" aria-hidden="true"></div>
+</div>
+
+<script src="assets/js/intro.js" defer></script>
+<script>
+  /* Decide before paint whether the overlay should be shown, so there is no
+     flash of the hero behind it. intro.js is deferred, so we re-implement the
+     minimum check here rather than waiting for it. */
+  (function () {
+    var el = document.getElementById('intro');
+    if (!el) return;
+    try {
+      var reduced = matchMedia('(prefers-reduced-motion: reduce)').matches;
+      var small   = matchMedia('(max-width: 820px)').matches;
+      var coarse  = matchMedia('(pointer: coarse)').matches;
+      var conn    = navigator.connection || {};
+      var saveData = !!conn.saveData;
+      var slowNet  = /^(slow-2g|2g|3g)$/.test(conn.effectiveType || '');
+      var played  = false;
+      try { played = sessionStorage.getItem('orbitech.intro.played') === '1'; } catch (e) {}
+
+      if (!reduced && !small && !coarse && !saveData && !slowNet && !played) {
+        el.removeAttribute('hidden');
+        document.body.classList.add('is-intro-locked');
+      }
+    } catch (e) { /* any failure → poster path, which is always safe */ }
+  })();
+</script>
+
+
+<!-- ==========================================================================
+     STICKY HEADER — hidden until the hero is scrolled past
+     ========================================================================== -->
+<header class="header" id="site-header">
+  <div class="header__inner">
+    <a class="logo" href="#hero" aria-label="Orbitech — back to top">
+      <svg class="logo__mark" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+           stroke-width="1.6" aria-hidden="true">
+        <circle cx="12" cy="12" r="3.6"/>
+        <ellipse cx="12" cy="12" rx="10" ry="4.6" transform="rotate(-28 12 12)"/>
+        <circle cx="20.4" cy="8.2" r="1.6" fill="currentColor" stroke="none"/>
+      </svg>
+      <span class="logo__text">Orbitech</span>
+    </a>
+
+    <nav class="nav" aria-label="Primary">
+      <ul class="nav__list" id="nav-list" role="list"><!-- rendered from config --></ul>
+    </nav>
+
+    <div class="header__actions">
+      <a class="btn btn--primary btn--sm header__cta" href="#contact">Start a project</a>
+      <button type="button" class="menu-toggle" id="menu-toggle"
+              aria-expanded="false" aria-controls="mobile-menu" aria-label="Open menu">
+        <span class="menu-toggle__bars" aria-hidden="true">
+          <span></span><span></span><span></span>
+        </span>
+      </button>
+    </div>
+  </div>
+</header>
+
+<div class="mobile-menu" id="mobile-menu">
+  <nav aria-label="Mobile">
+    <div id="mobile-menu-links"><!-- rendered from config --></div>
+  </nav>
+  <a class="btn btn--primary btn--block mobile-menu__cta" href="#contact">Start a project</a>
+</div>
+
+
+<main id="main">
+
+<!-- ==========================================================================
+     1. HERO
+     🔴 PLACEHOLDER — tagline and sub-line copy live directly below.
+     The backdrop, stars and planet limb are pure CSS: they are the static
+     poster state used on mobile, on reduced-motion, and after the intro ends.
+     ========================================================================== -->
+<section class="hero" id="hero" aria-labelledby="hero-title">
+  <div class="hero__backdrop" aria-hidden="true"></div>
+  <div class="hero__stars" aria-hidden="true"></div>
+  <div class="hero__planet" aria-hidden="true"></div>
+
+  <div class="hero__inner">
+    <p class="eyebrow hero__badge">Explore the orbit with us</p>
+
+    <!-- 🔴 PLACEHOLDER TAGLINE — replace this line, keep the markup -->
+    <h1 class="hero__title" id="hero-title">
+      Reach the <span class="text-gradient">Orbit</span>
+    </h1>
+
+    <!-- Plain-language one-liner. Deliberately literal, not metaphorical:
+         a skimming visitor must understand both pillars in one read. -->
+    <p class="hero__sub">
+      We handle the two hardest parts of building an AI product: the multilingual
+      data behind it, and the software around it. Annotation, transcription,
+      translation and MTPE across 100+ languages — plus an in-house engineering
+      team that builds the product itself.
+    </p>
+
+    <div class="hero__actions">
+      <a class="btn btn--primary btn--lg" href="#contact">Start a project</a>
+      <a class="btn btn--secondary btn--lg" href="#solutions">See what we do</a>
+    </div>
+
+    <div class="hero__pillars">
+      <span class="hero__pillar">Data Solutions</span>
+      <span class="hero__pillar">Software Development</span>
+      <span class="hero__pillar">100+ languages</span>
+      <span class="hero__pillar">Remote-first</span>
+    </div>
+  </div>
+
+  <a class="hero__scroll" href="#solutions" aria-label="Scroll to Data Solutions">
+    <span>Scroll</span>
+    <span aria-hidden="true"></span>
+  </a>
+</section>
+
+
+<!-- ==========================================================================
+     2. DATA SOLUTIONS
+     🔴 PLACEHOLDER — heading + lede copy below. All stats, service cards,
+     languages and case studies come from content.config.js'
+     ========================================================================== -->
+<section class="section section--tinted" id="solutions" aria-labelledby="data-title">
+  <div class="container">
+
+    <div class="pillar-head">
+      <div>
+        <p class="eyebrow eyebrow--numbered"><span class="eyebrow__badge">01</span>Data Solutions</p>
+        <h2 class="pillar-head__title" id="data-title">
+          The groundwork every model stands on
+        </h2>
+      </div>
+      <p class="lede pillar-head__lede">
+        Training data is only as good as the people producing it. We run a vetted,
+        globally distributed specialist network — with the review layer, quality
+        scoring and confidentiality controls that make its output safe to build on.
+      </p>
+    </div>
+
+    <!-- Credibility metrics for this pillar: network scale, language breadth,
+         quality. Deliberately not in-house headcount. -->
+    <div class="grid grid--4" id="data-stats"><!-- rendered from config --></div>
+
+    <div class="subsection">
+      <div class="subhead">
+        <h3 class="subhead__title">What we deliver</h3>
+        <span class="subhead__rule" aria-hidden="true"></span>
+      </div>
+      <div class="grid grid--3" id="data-services"><!-- rendered from config --></div>
+    </div>
+
+    <div class="subsection">
+      <div class="subhead">
+        <h3 class="subhead__title">Languages we cover</h3>
+        <span class="subhead__rule" aria-hidden="true"></span>
+        <span class="subhead__note">100+ and counting</span>
+      </div>
+      <div class="lang-panel">
+        <div class="lang-panel__aside" id="lang-aside"><!-- rendered from config --></div>
+        <div id="lang-groups"><!-- rendered from config --></div>
+      </div>
+    </div>
+
+    <div class="subsection" id="work" data-spy-work>
+      <div class="subhead">
+        <h3 class="subhead__title">Featured work</h3>
+        <span class="subhead__rule" aria-hidden="true"></span>
+        <span class="subhead__note">Some clients named, some under NDA</span>
+      </div>
+      <div class="grid grid--2" id="data-work"><!-- rendered from config --></div>
+    </div>
+
+  </div>
+</section>
+
+
+<!-- ==========================================================================
+     3. SOFTWARE DEVELOPMENT
+     🔴 PLACEHOLDER — heading + lede copy below.
+     ========================================================================== -->
+<section class="section" id="software" aria-labelledby="software-title">
+  <div class="container">
+
+    <div class="pillar-head">
+      <div>
+        <p class="eyebrow eyebrow--numbered"><span class="eyebrow__badge">02</span>Software Development</p>
+        <h2 class="pillar-head__title" id="software-title">
+          Engineers who ship, not just advise
+        </h2>
+      </div>
+      <p class="lede pillar-head__lede">
+        A salaried in-house team taking on client product work and internal tooling
+        alike — web and mobile applications, AI/ML systems, and the unglamorous
+        pipeline and platform work that keeps them running.
+      </p>
+    </div>
+
+    <div class="grid grid--4" id="software-stats"><!-- rendered from config --></div>
+
+    <div class="subsection">
+      <div class="subhead">
+        <h3 class="subhead__title">What we build</h3>
+        <span class="subhead__rule" aria-hidden="true"></span>
+      </div>
+      <div class="grid grid--3" id="software-services"><!-- rendered from config --></div>
+    </div>
+
+    <div class="subsection">
+      <div class="subhead">
+        <h3 class="subhead__title">Tools of the trade</h3>
+        <span class="subhead__rule" aria-hidden="true"></span>
+        <span class="subhead__note">Chosen per project, not per fashion</span>
+      </div>
+      <div class="stack-grid" id="tech-stack"><!-- rendered from config --></div>
+    </div>
+
+    <div class="subsection" data-spy-work>
+      <div class="subhead">
+        <h3 class="subhead__title">Featured work</h3>
+        <span class="subhead__rule" aria-hidden="true"></span>
+        <span class="subhead__note">Some clients named, some under NDA</span>
+      </div>
+      <div class="grid grid--2" id="software-work"><!-- rendered from config --></div>
+    </div>
+
+  </div>
+</section>
+
+
+<!-- ==========================================================================
+     4. WHY ORBITECH — the combined-capability differentiator
+     🔴 PLACEHOLDER — heading + lede below; comparison and points in config.
+     ========================================================================== -->
+<section class="section section--tinted why" id="why" aria-labelledby="why-title">
+  <div class="container why__inner">
+
+    <div class="section-head">
+      <p class="eyebrow">Why Orbitech</p>
+      <h2 id="why-title">Most agencies pick a side. We didn't.</h2>
+      <p class="lede">
+        Data services and software engineering are usually two different suppliers,
+        two contracts and two versions of who's at fault. Running both under one
+        roof isn't a bundle — it changes how the work gets done, and it matters
+        most to teams building AI products.
+      </p>
+    </div>
+
+    <div class="compare" id="why-compare"><!-- rendered from config --></div>
+
+    <div class="grid grid--2" id="why-points"><!-- rendered from config --></div>
+
+  </div>
+</section>
+
+
+<!-- ==========================================================================
+     5. MEET THE TEAM
+     🔴 PLACEHOLDER — heading + lede below; member cards in config.
+     ========================================================================== -->
+<section class="section" id="team" aria-labelledby="team-title">
+  <div class="container">
+
+    <div class="section-head">
+      <p class="eyebrow eyebrow--numbered"><span class="eyebrow__badge" aria-hidden="true"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><circle cx="9" cy="8" r="3.2"/><path d="M3.5 19c.6-3.3 2.9-5 5.5-5s4.9 1.7 5.5 5"/><circle cx="17.5" cy="8.5" r="2.6"/><path d="M15.5 14.3c2.3.2 4 1.8 4.5 4.7"/></svg></span>Meet the Crew</p>
+      <h2 id="team-title">The people in the control room</h2>
+      <p class="lede">
+        A small core team running delivery, quality and engineering — supported by
+        a specialist network that scales up and down with the work.
+      </p>
+    </div>
+
+    <div class="grid grid--3" id="team-grid"><!-- rendered from config --></div>
+
+  </div>
+</section>
+
+
+<!-- ==========================================================================
+     6. JOIN OUR TEAM
+     🔴 PLACEHOLDER — heading, lede and form intro below.
+     Pitch points, in-demand skills and referral options come from config.
+     Form submits to GOOGLE_SCRIPT_URL — see backend/SETUP-GOOGLE-APPS-SCRIPT.md
+     ========================================================================== -->
+<section class="section join" id="join" aria-labelledby="join-title">
+  <div class="container">
+
+    <div class="section-head">
+      <p class="eyebrow">Join the crew</p>
+      <h2 id="join-title">Good people, wherever they are</h2>
+      <p class="lede">
+        Our network is how we cover 100+ languages, and we're always adding to it.
+        If you annotate, transcribe, translate or post-edit — or review the people
+        who do — we'd like to know you.
+      </p>
+    </div>
+
+    <div class="join__grid">
+
+      <!-- Left column: the pitch + what's currently in demand -->
+      <div>
+        <ul class="join__pitch-list" id="join-pitch" role="list">
+          <!-- rendered from config -->
+        </ul>
+
+        <div class="demand-panel" data-reveal>
+          <div class="demand-panel__head">
+            <span class="demand-panel__pulse" aria-hidden="true"></span>
+            <span class="demand-panel__title">Currently in demand</span>
+            <span class="text-dim" style="margin-left:auto;font-size:var(--t-xs)"
+                  id="demand-updated"></span>
+          </div>
+          <div id="demand-groups"><!-- rendered from config --></div>
+          <p class="text-dim" style="margin-top:var(--s-5);font-size:var(--t-xs);line-height:1.6">
+            Not on the list? Apply anyway — needs shift constantly, and we keep
+            every application on file.
+          </p>
+        </div>
+      </div>
+
+      <!-- Right column: the application form -->
+      <div class="join__form-wrap" data-reveal>
+        <div class="join__form-head">
+          <h3>Apply to the network</h3>
+          <p class="text-muted" style="font-size:var(--t-sm)">
+            Five minutes, no account needed. We read everything that comes in.
+          </p>
+        </div>
+
+        <form class="form" id="application-form" novalidate>
+
+          <div class="form__row form__row--2">
+            <div class="field">
+              <label class="field__label" for="app-name">
+                Full name <span class="field__req" aria-hidden="true">*</span>
+              </label>
+              <input class="field__control" type="text" id="app-name" name="fullName"
+                     autocomplete="name" required
+                     aria-describedby="app-name-error">
+              <p class="field__error" id="app-name-error" role="alert"></p>
+            </div>
+
+            <div class="field">
+              <label class="field__label" for="app-email">
+                Email <span class="field__req" aria-hidden="true">*</span>
+              </label>
+              <input class="field__control" type="email" id="app-email" name="email"
+                     autocomplete="email" required
+                     aria-describedby="app-email-error">
+              <p class="field__error" id="app-email-error" role="alert"></p>
+            </div>
+          </div>
+
+          <div class="field">
+            <label class="field__label" for="app-country">
+              Country <span class="field__req" aria-hidden="true">*</span>
+            </label>
+            <input class="field__control" type="text" id="app-country" name="country"
+                   autocomplete="country-name" required
+                   placeholder="Where you're based"
+                   aria-describedby="app-country-error">
+            <p class="field__error" id="app-country-error" role="alert"></p>
+          </div>
+
+          <div class="field">
+            <label class="field__label" for="app-skills">
+              Skills <span class="field__req" aria-hidden="true">*</span>
+            </label>
+            <textarea class="field__control" id="app-skills" name="skills" required
+                      rows="3"
+                      placeholder="e.g. Image annotation (bounding boxes, segmentation), medical transcription, legal MTPE — plus any tools you know"
+                      aria-describedby="app-skills-hint app-skills-error"></textarea>
+            <p class="field__hint" id="app-skills-hint">
+              Be specific — this is what we search when a matching project comes in.
+            </p>
+            <p class="field__error" id="app-skills-error" role="alert"></p>
+          </div>
+
+          <div class="field">
+            <label class="field__label" for="app-languages">
+              Languages <span class="field__req" aria-hidden="true">*</span>
+            </label>
+            <input class="field__control" type="text" id="app-languages" name="languages"
+                   required
+                   placeholder="e.g. Bengali (native), English (C2), Hindi (B2)"
+                   aria-describedby="app-languages-hint app-languages-error">
+            <p class="field__hint" id="app-languages-hint">
+              Include your proficiency level for each, and note any dialects.
+            </p>
+            <p class="field__error" id="app-languages-error" role="alert"></p>
+          </div>
+
+          <!-- CV: link OR upload. Either satisfies the requirement. -->
+          <fieldset style="border:0;padding:0;margin:0" aria-describedby="app-cv-note">
+            <legend class="field__label" style="margin-bottom:var(--s-2)">
+              CV or portfolio <span class="field__req" aria-hidden="true">*</span>
+            </legend>
+            <p class="field__hint" id="app-cv-note" style="margin-bottom:var(--s-4)">
+              A link or a file — whichever is easier. You only need one.
+            </p>
+
+            <div class="field" style="margin-bottom:var(--s-4)">
+              <label class="field__label" for="app-cv-url"
+                     style="font-weight:500;color:var(--c-text-muted)">Link</label>
+              <input class="field__control" type="url" id="app-cv-url" name="cvUrl"
+                     inputmode="url"
+                     placeholder="https://linkedin.com/in/… or a Drive link"
+                     aria-describedby="app-cv-url-error">
+              <p class="field__error" id="app-cv-url-error" role="alert"></p>
+            </div>
+
+            <div class="field">
+              <span class="field__label" style="font-weight:500;color:var(--c-text-muted)">
+                Or upload a file
+              </span>
+              <div class="filefield">
+                <label class="btn btn--secondary btn--sm" for="app-cv-file">
+                  <svg viewBox="0 0 24 24" width="15" height="15" fill="none"
+                       stroke="currentColor" stroke-width="1.8" stroke-linecap="round"
+                       stroke-linejoin="round" aria-hidden="true">
+                    <path d="M12 16V4M7 9l5-5 5 5M4 17v2a2 2 0 002 2h12a2 2 0 002-2v-2"/>
+                  </svg>
+                  Choose file
+                </label>
+                <input type="file" id="app-cv-file" name="cvFile"
+                       aria-describedby="app-cv-file-hint app-cv-file-error">
+                <span class="filefield__name" id="app-cv-file-name">No file selected</span>
+              </div>
+              <p class="field__hint" id="app-cv-file-hint"><!-- set from config --></p>
+              <p class="field__error" id="app-cv-file-error" role="alert"></p>
+            </div>
+          </fieldset>
+
+          <div class="field">
+            <label class="field__label" for="app-referral">
+              How did you hear about us? <span class="field__req" aria-hidden="true">*</span>
+            </label>
+            <select class="field__control" id="app-referral" name="referral" required
+                    aria-describedby="app-referral-error">
+              <option value="">Select an option…</option>
+              <!-- options rendered from config -->
+            </select>
+            <p class="field__error" id="app-referral-error" role="alert"></p>
+          </div>
+
+          <div class="field">
+            <label class="field__label" for="app-notes">
+              Anything else? <span class="text-dim" style="font-weight:400">(optional)</span>
+            </label>
+            <textarea class="field__control" id="app-notes" name="notes" rows="3"
+                      placeholder="Availability, rate expectations, notable projects…"></textarea>
+          </div>
+
+          <!-- Honeypot: hidden from humans, irresistible to bots -->
+          <div class="hp-field" aria-hidden="true">
+            <label for="app-hp">Company website</label>
+            <input type="text" id="app-hp" name="company_website" tabindex="-1" autocomplete="off">
+          </div>
+
+          <p class="form__status" id="application-status" role="status" aria-live="polite"></p>
+
+          <button type="submit" class="btn btn--primary btn--lg btn--block">
+            Submit application
+          </button>
+
+          <p class="field__hint" style="text-align:center">
+            We only use what you send here to assess you for project work.
+          </p>
+        </form>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+
+<!-- ==========================================================================
+     7. TRUST & CONFIDENTIALITY
+     🔴 PLACEHOLDER — heading + lede below; items and the caveat note in config.
+     ⚠️ Do not add certification claims here until you actually hold them.
+     ========================================================================== -->
+<section class="section section--tinted" id="trust" aria-labelledby="trust-title">
+  <div class="container">
+    <div class="trust__grid">
+
+      <div class="section-head" style="margin-bottom:0">
+        <p class="eyebrow">Trust & confidentiality</p>
+        <h2 id="trust-title">Your data doesn't leave the perimeter</h2>
+        <p class="lede">
+          Annotation work means handing your data to people. That's the part
+          clients worry about, and rightly. Here is exactly how we handle it.
+        </p>
+      </div>
+
+      <div>
+        <ul class="trust__list" id="trust-list" role="list"><!-- rendered from config --></ul>
+        <p class="trust__note" id="trust-note"><!-- rendered from config --></p>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+
+<!-- ==========================================================================
+     8. CONTACT
+     🔴 PLACEHOLDER — heading + lede below; inquiry types and interests in config.
+     ========================================================================== -->
+<section class="section" id="contact" aria-labelledby="contact-title">
+  <div class="container">
+
+    <div class="section-head">
+      <p class="eyebrow">Open a channel</p>
+      <h2 id="contact-title">Tell us what you're building</h2>
+      <p class="lede">
+        A rough brief is enough to start. We'll tell you honestly whether we're
+        the right fit — and if we're not, we'll usually know who is.
+      </p>
+    </div>
+
+    <div class="contact__grid">
+
+      <div>
+        <div class="contact__details" id="contact-details"><!-- rendered from config --></div>
+
+        <!-- Small cross-link for anyone who landed here looking for work -->
+        <p class="contact__crosslink">
+          Looking for work rather than hiring us?
+          <a href="#join">Apply to join our network →</a>
+        </p>
+      </div>
+
+      <div class="contact__form-wrap" data-reveal>
+        <form class="form" id="contact-form" novalidate>
+
+          <fieldset class="field" style="border:0;padding:0;margin:0">
+            <legend class="field__label" style="margin-bottom:var(--s-3)">
+              What brings you here?
+            </legend>
+            <div class="segmented" id="inquiry-types"><!-- rendered from config --></div>
+          </fieldset>
+
+          <div class="form__row form__row--2">
+            <div class="field">
+              <label class="field__label" for="contact-name">
+                Name <span class="field__req" aria-hidden="true">*</span>
+              </label>
+              <input class="field__control" type="text" id="contact-name" name="name"
+                     autocomplete="name" required aria-describedby="contact-name-error">
+              <p class="field__error" id="contact-name-error" role="alert"></p>
+            </div>
+
+            <div class="field">
+              <label class="field__label" for="contact-email">
+                Work email <span class="field__req" aria-hidden="true">*</span>
+              </label>
+              <input class="field__control" type="email" id="contact-email" name="email"
+                     autocomplete="email" required aria-describedby="contact-email-error">
+              <p class="field__error" id="contact-email-error" role="alert"></p>
+            </div>
+          </div>
+
+          <div class="form__row form__row--2">
+            <div class="field">
+              <label class="field__label" for="contact-company">
+                Company <span class="text-dim" style="font-weight:400">(optional)</span>
+              </label>
+              <input class="field__control" type="text" id="contact-company" name="company"
+                     autocomplete="organization">
+            </div>
+
+            <div class="field">
+              <label class="field__label" for="contact-interest">What do you need?</label>
+              <select class="field__control" id="contact-interest" name="interest">
+                <option value="">Select a service…</option>
+                <!-- options rendered from config -->
+              </select>
+            </div>
+          </div>
+
+          <div class="field">
+            <label class="field__label" for="contact-message">
+              Your project <span class="field__req" aria-hidden="true">*</span>
+            </label>
+            <textarea class="field__control" id="contact-message" name="message" required
+                      rows="5"
+                      placeholder="What you're building, rough volumes or scope, languages involved, and any deadline you're working to."
+                      aria-describedby="contact-message-hint contact-message-error"></textarea>
+            <p class="field__hint" id="contact-message-hint">
+              Volumes, languages and timeline help us give you a real number rather
+              than a range.
+            </p>
+            <p class="field__error" id="contact-message-error" role="alert"></p>
+          </div>
+
+          <div class="hp-field" aria-hidden="true">
+            <label for="contact-hp">Company website</label>
+            <input type="text" id="contact-hp" name="company_website" tabindex="-1"
+                   autocomplete="off">
+          </div>
+
+          <p class="form__status" id="contact-status" role="status" aria-live="polite"></p>
+
+          <button type="submit" class="btn btn--primary btn--lg btn--block">
+            Send message
+          </button>
+        </form>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+</main>
+
+
+<!-- ==========================================================================
+     9. FOOTER
+     ========================================================================== -->
+<footer class="footer">
+  <div class="container">
+
+    <div class="footer__top">
+      <div>
+        <a class="logo" href="#hero" aria-label="Orbitech — back to top">
+          <svg class="logo__mark" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+               stroke-width="1.6" aria-hidden="true">
+            <circle cx="12" cy="12" r="3.6"/>
+            <ellipse cx="12" cy="12" rx="10" ry="4.6" transform="rotate(-28 12 12)"/>
+            <circle cx="20.4" cy="8.2" r="1.6" fill="currentColor" stroke="none"/>
+          </svg>
+          <span class="logo__text">Orbitech</span>
+        </a>
+        <p class="footer__brand-text" id="footer-desc"><!-- from config --></p>
+        <div class="footer__socials" id="footer-socials"><!-- from config --></div>
+      </div>
+
+      <!-- Link columns, including the quick link to Join Our Team -->
+      <div style="display:contents" id="footer-cols"><!-- from config --></div>
+    </div>
+
+    <div class="footer__bottom">
+      <p id="footer-copy"><!-- from config --></p>
+      <nav class="footer__legal" id="footer-legal" aria-label="Legal"><!-- from config --></nav>
+    </div>
+
+  </div>
+</footer>
+
+<script src="assets/js/content.config.js"></script>
+<script src="assets/js/app.js" defer></script>
+
+</body>
+</html>
